@@ -10,9 +10,13 @@
     "@types/node": "^16.18.61",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/styled-components": "^5.1.30",
+    "firebase": "^10.6.0",
+    "monday-ui-react-core": "^2.61.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -39,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.19.0"
   }
 }

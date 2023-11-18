@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useMemo, useState } from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home } from './Home';
+import { Artist } from './Artist';
+import { FirebaseContext } from './FirebaseContext';
+import { getFirestore } from 'firebase/firestore';
+import { getFunctions } from 'firebase/functions';
+
+import { initializeApp } from 'firebase/app';
+
+const firebaseConfig = {
+  /**
+   * Find in the firebase console
+   */
+};
+
 
 function App() {
+  const app = useMemo(() => initializeApp(firebaseConfig), []);
+  const [firestore] = useState(getFirestore(app));
+  const [functions] = useState(getFunctions(app));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FirebaseContext.Provider value={{ firestore, functions }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route index Component={Home}/>
+            <Route path="artist/:id" Component={Artist}/>
+            <Route/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </FirebaseContext.Provider>
   );
 }
 
